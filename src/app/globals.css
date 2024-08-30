@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 30;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-button {
+    width: 1px;
+    height: 1px;
+}
+
+/* Default Styles for larger screens (vertical scroll) */
+.horizontal-scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vh;
+    transform: rotate(-90deg) translate3d(0, -100vh, 0);
+    transform-origin: right top;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    height: 100vw;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    padding-bottom: 10rem;
+}
+
+.img-wrapper {
+    transform: rotate(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 65vh;
+    transform-origin: 50% 50%;
+    transition: 1s;
+}
+
+.img-wrapper a {
+    overflow: hidden;
+    display: block;
+    padding: 1vh;
+    background: #E4E7C4;
+    box-shadow: 0 10px 50px #B69C6D;
+}
+
+.img {
+    max-width: 70vh;
+    max-height: 80vh;
+    transition: 0.5s;
+    vertical-align: top;
+    filter: saturate(40%) sepia(30%) hue-rotate(5deg);
+}
+
+a:hover .img {
+    filter: none;
+}
+
+.slower-1 {
+    transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateX(0) translateY(-10vh);
+    margin: 100px;
+}
+
+/* Add other slower classes here... */
+
+/* Keyframes for floating animation */
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.animate-floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* Mobile Styles (horizontal scroll) */
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+    .horizontal-scroll-wrapper {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+        transform-origin: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100vw;
+        height: auto;
+        padding-bottom: 0;
+        display: flex; /* Ensure horizontal scrolling */
+        flex-direction: row; /* Align items horizontally */
+        align-items: center; /* Center items vertically */
+    }
+
+    .img-wrapper {
+        transform: rotate(0deg) translateZ(0) scale(1) translateX(0) translateY(0);
+        min-height: auto; /* Adjust based on content */
+    }
+
+    .img {
+        max-width: 100vw; /* Ensure images fit horizontally */
+        max-height: 60vh; /* Adjust height based on your needs */
+    }
+}
